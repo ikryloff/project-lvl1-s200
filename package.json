@@ -1,11 +1,12 @@
 {
   "name": "bgames_ikryloff",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "",
   "main": "index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
-    "brain-even": "dist/bin/brain-even.js"
+    "brain-calc": "dist/bin/brain-calc.js",
+    "brain-even": "dist/bin/brain-even.js"    
   },
   "files": [
     "dist"
@@ -38,6 +39,7 @@
     "eslint-plugin-import": "^2.8.0"
   },
   "dependencies": {
+    "hexlet-pairs": "^1.0.5",
     "readline-sync": "^1.4.8"
   }
 }

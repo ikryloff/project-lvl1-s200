@@ -1,4 +1,5 @@
 import readlineSync from 'readline-sync';
+import { cons, car, cdr } from 'hexlet-pairs';
 
 export const username = () => {
   const name = readlineSync.question('May I have your name? ');
@@ -6,25 +7,42 @@ export const username = () => {
   return name;
 };
 
-export const even = () => {
+export const randomNumber = () => Math.floor(Math.random() * 100) + 1;
+export const isEven = nums => (car(nums) % 2 === 0 ? 'yes' : 'no');
+export const pareOfNums = () => cons(randomNumber(), randomNumber());
+export const numForIsEven = nums => car(nums);
+
+
+// Calc
+export const numsForCalcStr = (nums, count) => {
+  if (count === 3) return `${car(nums)} + ${cdr(nums)}`;
+  if (count === 2) return `${car(nums)} - ${cdr(nums)}`;
+  return `${car(nums)} * ${cdr(nums)}`;
+};
+
+export const numsForCalcRes = (nums, count) => {
+  if (count === 3) return car(nums) + cdr(nums);
+  if (count === 2) return car(nums) - cdr(nums);
+  return car(nums) * cdr(nums);
+};
+
+
+export const game = (answer, rightAnswer) => {
   const name = username();
   const congratulations = `Congratulations, '${name}'!`;
-  const number = () => Math.floor(Math.random() * 100) + 1;
-  const isEven = num => (num % 2 === 0 ? 'yes' : 'no');
-  const answer = num => readlineSync.question(`Question: ${num}\nYour answer: `);
+  const userAnswer = question => readlineSync.question(`Question: ${question}\nYour answer: `);
   const iter = (count) => {
+    const nums = pareOfNums();
     if (count === 0) {
-      console.log(congratulations);
-      return 0;
+      return congratulations;
     }
-    const num = number();
-    const ans = answer(num);
-    if (isEven(num) === ans) {
+    const right = rightAnswer(nums, count);
+    const usr = userAnswer(answer(nums, count));
+    if (String(right) === usr) {
       console.log('Correct!');
       return iter(count - 1);
     }
-    console.log(`'${ans}' is wrong answer ;(. Correct answer was '${isEven(num)}.\nLet's try again, '${name}'!'`);
-    return 0;
+    return (`${usr} is wrong answer ;(. Correct answer was ${right}.\nLet's try again, ${name}!'`);
   };
   return iter(3);
 };

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { even } from '..';
+import { isEven, game, numForIsEven } from '..';
 
 console.log('Welcome to the Brain Games!\nAnswer "yes" if number even otherwise answer "no".');
-even();
+console.log(game(numForIsEven, isEven));
