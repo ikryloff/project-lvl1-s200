@@ -7,7 +7,7 @@ export const username = () => {
   return name;
 };
 
-export const randomNumber = () => Math.floor(Math.random() * 100) + 1;
+export const randomNumber = () => Math.floor(Math.random() * 50) + 1;
 export const isEven = nums => (car(nums) % 2 === 0 ? 'yes' : 'no');
 export const pareOfNums = () => cons(randomNumber(), randomNumber());
 export const numForIsEven = nums => car(nums);
@@ -24,6 +24,18 @@ export const numsForCalcRes = (nums, count) => {
   if (count === 3) return car(nums) + cdr(nums);
   if (count === 2) return car(nums) - cdr(nums);
   return car(nums) * cdr(nums);
+};
+
+// GCD
+export const numsForGCDStr = nums => `${car(nums)} ${cdr(nums)}`;
+export const numsForGCDRes = (nums) => {
+  const x = car(nums);
+  const y = cdr(nums);
+  const iter = (a, b) => {
+    if (a % b === 0) return b;
+    return iter(b, a % b);
+  };
+  return x > y ? iter(x, y) : iter(y, x);
 };
 
 
