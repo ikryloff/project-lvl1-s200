@@ -1,7 +1,7 @@
 import { cons } from 'hexlet-pairs';
 import { game, randomNumber } from '../index';
 
-const text = '\nFind the greatest common divisor of given numbers.';
+const text = 'Find the greatest common divisor of given numbers.';
 
 const taskToString = (num1, num2) => `${num1} ${num2}`;
 

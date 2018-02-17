@@ -2,7 +2,7 @@ import { cons } from 'hexlet-pairs';
 import { game, randomNumber } from '../index';
 
 
-const text = '\nAnswer "yes" if number even otherwise answer "no".';
+const text = 'Answer "yes" if number even otherwise answer "no".';
 const rightAnswer = num => (num % 2 === 0 ? 'yes' : 'no');
 
 const check = () => {

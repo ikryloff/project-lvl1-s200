@@ -1,7 +1,7 @@
 import { cons } from 'hexlet-pairs';
 import { game, randomNumber } from '../index';
 
-const text = '\nWhat is the result of the expression?';
+const text = 'What is the result of the expression?';
 
 const taskToString = (num1, num2, sign) => `${num1} ${sign} ${num2}`;
 const check = (count) => {
