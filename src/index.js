@@ -23,12 +23,14 @@ const checkCondition = (right, attempt) => {
 const wrongAnswer = (userAnswer, rightAnswer, name) =>
   console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${rightAnswer}.\nLet's try again, ${name}!'`);
 
+const userAsk = question => readlineSync.question(`Question: ${question}\nYour answer: `);
+
+// Exported funcs
 export const randomNumber = (min, max) => Math.floor(Math.random() * max) + min;
 
 // Engine
 export const game = (text, check) => {
   const counter = 3;
-  const userAsk = question => readlineSync.question(`Question: ${question}\nYour answer: `);
   const name = greeting(text);
   if (check) {
     const iter = (count) => {
