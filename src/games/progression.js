@@ -17,13 +17,13 @@ const makeProgression = (start, step, miss) => {
 };
 
 
-const check = () => {
+const gameTask = () => {
   const start = randomNumber(1, 100);
   const step = randomNumber(1, 10);
   const miss = randomNumber(2, 8);
   const task = makeProgression(start, step, miss);
   return cons(cdr(task), car(task));
 };
-const progression = () => game(text, check);
+const progression = () => game(text, gameTask);
 
 export default progression;

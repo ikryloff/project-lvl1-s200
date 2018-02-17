@@ -45,11 +45,11 @@ const bal = (num) => {
   return newArr.join('');
 };
 
-const check = () => {
+const gameTask = () => {
   const num = randomNumber(13, 103);
   const rightAnswer = bal(num);
   return cons(num, rightAnswer);
 };
-const balance = () => game(text, check);
+const balance = () => game(text, gameTask);
 
 export default balance;

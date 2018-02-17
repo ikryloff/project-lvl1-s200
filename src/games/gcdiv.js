@@ -13,13 +13,13 @@ const gcd = (x, y) => {
   return x > y ? iter(x, y) : iter(y, x);
 };
 
-const check = () => {
+const gameTask = () => {
   const num1 = randomNumber(1, 50);
   const num2 = randomNumber(1, 50);
   const task = taskToString(num1, num2);
   const rightAnswer = gcd(num1, num2);
   return cons(task, rightAnswer);
 };
-const gcdiv = () => game(text, check);
+const gcdiv = () => game(text, gameTask);
 
 export default gcdiv;
