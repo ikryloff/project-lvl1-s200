@@ -1,60 +1,49 @@
 import readlineSync from 'readline-sync';
-import { cons, car, cdr } from 'hexlet-pairs';
+import { car, cdr } from 'hexlet-pairs';
 
-export const username = () => {
+// Engine funcs
+
+const greeting = (text) => {
+  console.log(`Welcome to the Brain Games!\n${text}`);
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}`);
   return name;
 };
 
-export const randomNumber = () => Math.floor(Math.random() * 50) + 1;
-export const isEven = nums => (car(nums) % 2 === 0 ? 'yes' : 'no');
-export const pareOfNums = () => cons(randomNumber(), randomNumber());
-export const numForIsEven = nums => car(nums);
+const congratulations = name => console.log(`Congratulations, '${name}'!`);
 
-
-// Calc
-export const numsForCalcStr = (nums, count) => {
-  if (count === 3) return `${car(nums)} + ${cdr(nums)}`;
-  if (count === 2) return `${car(nums)} - ${cdr(nums)}`;
-  return `${car(nums)} * ${cdr(nums)}`;
+const checkCondition = (right, attempt) => {
+  if (String(right) === attempt) {
+    console.log('Correct!');
+    return true;
+  }
+  return false;
 };
 
-export const numsForCalcRes = (nums, count) => {
-  if (count === 3) return car(nums) + cdr(nums);
-  if (count === 2) return car(nums) - cdr(nums);
-  return car(nums) * cdr(nums);
-};
+const wrongAnswer = (userAnswer, rightAnswer, name) =>
+  console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${rightAnswer}.\nLet's try again, ${name}!'`);
 
-// GCD
-export const numsForGCDStr = nums => `${car(nums)} ${cdr(nums)}`;
-export const numsForGCDRes = (nums) => {
-  const x = car(nums);
-  const y = cdr(nums);
-  const iter = (a, b) => {
-    if (a % b === 0) return b;
-    return iter(b, a % b);
-  };
-  return x > y ? iter(x, y) : iter(y, x);
-};
+export const randomNumber = (min, max) => Math.floor(Math.random() * max) + min;
 
-
-export const game = (answer, rightAnswer) => {
-  const name = username();
-  const congratulations = `Congratulations, '${name}'!`;
-  const userAnswer = question => readlineSync.question(`Question: ${question}\nYour answer: `);
-  const iter = (count) => {
-    const nums = pareOfNums();
-    if (count === 0) {
-      return congratulations;
-    }
-    const right = rightAnswer(nums, count);
-    const usr = userAnswer(answer(nums, count));
-    if (String(right) === usr) {
-      console.log('Correct!');
-      return iter(count - 1);
-    }
-    return (`${usr} is wrong answer ;(. Correct answer was ${right}.\nLet's try again, ${name}!'`);
-  };
-  return iter(3);
+// Engine
+export const game = (text, check) => {
+  const counter = 3;
+  const userAsk = question => readlineSync.question(`Question: ${question}\nYour answer: `);
+  const name = greeting(text);
+  if (check) {
+    const iter = (count) => {
+      if (count === 0) {
+        return congratulations(name);
+      }
+      const data = check(count);
+      const userAnswer = userAsk(car(data));
+      const rightAnswer = cdr(data);
+      if (checkCondition(rightAnswer, userAnswer)) {
+        return iter(count - 1);
+      }
+      return wrongAnswer(userAnswer, rightAnswer, name);
+    };
+    return iter(counter);
+  }
+  return 0;
 };
