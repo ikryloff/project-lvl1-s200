@@ -29,15 +29,15 @@ const userAsk = question => readlineSync.question(`Question: ${question}\nYour a
 export const randomNumber = (min, max) => Math.floor(Math.random() * max) + min;
 
 // Engine
-export const game = (text, gameTask) => {
+export const game = (text, generateQandA) => {
   const counter = 3;
   const name = greeting(text);
-  if (gameTask) {
+  if (generateQandA) {
     const iter = (count) => {
       if (count === 0) {
         return congratulations(name);
       }
-      const data = gameTask(count);
+      const data = generateQandA(count);
       const userAnswer = userAsk(car(data));
       const rightAnswer = cdr(data);
       if (checkCondition(rightAnswer, userAnswer)) {

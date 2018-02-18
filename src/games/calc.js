@@ -4,7 +4,7 @@ import { game, randomNumber } from '../index';
 const text = 'What is the result of the expression?';
 
 const taskToString = (num1, num2, sign) => `${num1} ${sign} ${num2}`;
-const gameTask = (count) => {
+const generateQandA = (count) => {
   const num1 = randomNumber(1, 10);
   const num2 = randomNumber(1, 10);
   let task = '';
@@ -21,6 +21,6 @@ const gameTask = (count) => {
   }
   return cons(task, rightAnswer);
 };
-const calc = () => game(text, gameTask);
+const calc = () => game(text, generateQandA);
 
 export default calc;
