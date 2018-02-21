@@ -9,9 +9,13 @@
 
 
 Welcome to my BrainGames (version 0.1.16)!
+
 There are some simple games for you!
+
 1. To install it global use the command:
+```
 npm install -g bgames_ikryloff
+```
 2. After installation you can run one of the game by command:
 - brain-gcd (find great common divisor)
 - brain-even (guess if the number is iven or odd)
